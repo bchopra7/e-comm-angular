@@ -17,7 +17,8 @@ export interface product{
     color:string,
     description:string,
     image:string,
-    quantity:undefined|number
+    quantity:undefined|number,
+    productId:undefined|number
 }
 
 export interface cart{

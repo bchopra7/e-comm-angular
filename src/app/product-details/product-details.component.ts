@@ -31,6 +31,18 @@ export class ProductDetailsComponent {
           this.removeCart=true;
         }
         else {this.removeCart=false;}
+      
+      }
+      let user=localStorage.getItem('user');
+      if(user){
+        let userId=user && JSON.parse(user).id;
+        this.product.getCardList(userId);
+        this.product.cartData.subscribe((result)=>{
+        let item=result.filter((item:product)=>productId?.toString()===item.productId?.toString())
+        if(item.length){
+          this.removeCart=true;
+        }
+        })
       }
     })
   }
@@ -67,6 +79,8 @@ export class ProductDetailsComponent {
      this.product.addToCart(cartData).subscribe((result)=>{
       if(result){
         alert('Product is added in the cart');
+        this.product.getCardList(userId);
+        this.removeCart=true;
       }
      })
       }

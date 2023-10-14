@@ -48,6 +48,7 @@ export class ProductService {
     if (!localCart) {
       console.log("Cart data local " + localCart);
       localStorage.setItem('localCart', JSON.stringify([data]));
+      this.cartData.emit([data]);
     }
     else {
       console.log("data-- " + JSON.stringify(data));
@@ -78,8 +79,21 @@ export class ProductService {
   }
 
 
-  addToCart(cartData:cart){
-      return this.http.post('http://localhost:3000/cart',cartData);
-    
+  addToCart(cartData: cart) {
+    return this.http.post('http://localhost:3000/cart', cartData);
+
+  }
+  getCardList(userId: number) {
+    return this.http.get<product[]>('http://localhost:3000/cart?userId=' + userId,
+      {
+        observe: 'response'
+      }).subscribe((result) => {
+        if(result && result.body){
+          console.warn("getCardList - " + JSON.stringify(result))
+
+          this.cartData.emit(result.body);
+        }
+
+      });
   }
 }

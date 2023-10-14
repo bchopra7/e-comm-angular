@@ -31,13 +31,13 @@ export class UserService {
   }
 
   userLogin(data: login) {
-    this.http.get<SignUp[]>(`http://localhost:3000/users?email=${data.email}&password=${data.password}`,
+     this.http.get<SignUp[]>(`http://localhost:3000/users?email=${data.email}&password=${data.password}`,
       { observe: 'response' }).subscribe((result) => {
         if (result && result.body?.length) {
-          this.invalidUserAuth.emit(false)
           console.warn("result in userLogin - " + JSON.stringify(result.body[0]));
           localStorage.setItem("user", JSON.stringify(result.body[0]));
           this.router.navigate(['/']);
+          this.invalidUserAuth.emit(false);
         }
         else {
           this.invalidUserAuth.emit(true);
