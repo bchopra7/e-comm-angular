@@ -4,19 +4,18 @@
         <div class="row">
             <div class="col-sm-7 shipping-address">
                 <h3>Add Shipping Address</h3>
-                <form #orderData="ngForm" class="common-form">
+                <form #orderData="ngForm" class="common-form" (ngSubmit)="orderNow(orderData.value)">
                     <input type="text" placeholder="Enter email" name="email" ngModel class="form-input">
 
                     <input type="text" placeholder="Enter your adress" name="address" ngModel class="form-input">
 
                     <input type="text" placeholder="Enter contact Details" name="contact" ngModel class="form-input">
 
-
                     <button class="form-button">Order Now</button>
                 </form>
             </div>
             <div class="col-sm-5">
-                <h3>Total Amount : 500</h3>
+                <h3>Total Amount : {{totalPrice}}</h3>
                 <h3>Payment Mode : <b>Pay on delivery</b></h3>
             </div>
         </div>

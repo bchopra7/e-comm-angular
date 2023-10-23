@@ -138,5 +138,15 @@
       "productId": 3,
       "id": 2
     }
+  ],
+  "orders": [
+    {
+      "email": "bchopra7@gmail.com",
+      "address": "31-A,street no. 14 ,Sarojini Park Shastri Nagar, Near Manchanda Sishu vikas public School",
+      "contact": "09650087310",
+      "totalPrice": 410100,
+      "userId": 2,
+      "id": 1
+    }
   ]
 }
